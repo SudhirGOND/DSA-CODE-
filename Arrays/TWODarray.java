@@ -336,5 +336,186 @@ System.out.println();
         PRINT(arr);
     }
 }
+/// the below is the error free written by the chatgpt
+import java.util.*;
+
+public class TWODarray {
+
+    // printing function
+    public static void chhap(int arr[][]) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) { // FIXED
+                System.out.print(arr[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    // sum of all elements
+    public static int sum(int arr[][]) {
+        int sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[i].length; j++) { // FIXED
+                sum += arr[i][j];
+            }
+        }
+        return sum;
+    }
+
+    // addition of two matrices
+    public static int[][] add(int a[][], int b[][]) {
+        int rows = a.length;
+        int cols = a[0].length;
+
+        int res[][] = new int[rows][cols];
+
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                res[i][j] = a[i][j] + b[i][j];
+            }
+        }
+        return res;
+    }
+
+    // transpose (in-place)
+    public static void transpose(int arr[][]) {
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = i; j < arr[0].length; j++) {
+                int temp = arr[i][j];
+                arr[i][j] = arr[j][i];
+                arr[j][i] = temp;
+            }
+        }
+    }
+
+    // rotate 90 degree (clockwise)
+    public static void rotate90(int arr[][]) {
+        transpose(arr);
+
+        for (int i = 0; i < arr.length; i++) {
+            int left = 0;
+            int right = arr[i].length - 1;
+
+            while (left < right) {
+                int temp = arr[i][left];
+                arr[i][left] = arr[i][right];
+                arr[i][right] = temp;
+                left++;
+                right--;
+            }
+        }
+    }
+
+    // wave print
+    public static void wave(int arr[][]) {
+        for (int i = 0; i < arr.length; i++) {
+            if (i % 2 == 0) {
+                for (int j = 0; j < arr[i].length; j++) {
+                    System.out.print(arr[i][j] + " ");
+                }
+            } else {
+                for (int j = arr[i].length - 1; j >= 0; j--) {
+                    System.out.print(arr[i][j] + " ");
+                }
+            }
+        }
+        System.out.println();
+    }
+
+    // spiral print
+    public static void spiral(int arr[][]) {
+        int minr = 0, maxr = arr.length - 1;
+        int minc = 0, maxc = arr[0].length - 1;
+
+        while (minr <= maxr && minc <= maxc) {
+
+            // top row
+            for (int j = minc; j <= maxc; j++) {
+                System.out.print(arr[minr][j] + " ");
+            }
+            minr++;
+
+            // right column
+            for (int i = minr; i <= maxr; i++) {
+                System.out.print(arr[i][maxc] + " ");
+            }
+            maxc--;
+
+            if (minr <= maxr) {
+                // bottom row
+                for (int j = maxc; j >= minc; j--) {
+                    System.out.print(arr[maxr][j] + " ");
+                }
+                maxr--;
+            }
+
+            if (minc <= maxc) {
+                // left column
+                for (int i = maxr; i >= minr; i--) {
+                    System.out.print(arr[i][minc] + " ");
+                }
+                minc++;
+            }
+        }
+        System.out.println();
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        int n = 3, m = 3;
+
+        int arr[][] = new int[n][m];
+        int brr[][] = new int[n][m];
+
+        System.out.println("Enter matrix 1:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                arr[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("Enter matrix 2:");
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                brr[i][j] = sc.nextInt();
+            }
+        }
+
+        System.out.println("\nMatrix 1:");
+        chhap(arr);
+
+        System.out.println("\nMatrix 2:");
+        chhap(brr);
+
+        // sum
+        System.out.println("\nSum of matrix1 elements: " + sum(arr));
+
+        // addition
+        int result[][] = add(arr, brr);
+        System.out.println("\nAddition:");
+        chhap(result);
+
+        // transpose
+        transpose(arr);
+        System.out.println("\nTranspose of matrix1:");
+        chhap(arr);
+
+        // rotate
+        rotate90(arr);
+        System.out.println("\nRotate 90 degree:");
+        chhap(arr);
+
+        // wave
+        System.out.println("\nWave print:");
+        wave(arr);
+
+        // spiral
+        System.out.println("\nSpiral print:");
+        spiral(arr);
+
+        sc.close();
+    }
+}
 
 

@@ -337,6 +337,64 @@ System.out.println();
     }
 }
 /// the below is the error free written by the chatgpt
+// EDGE CASE: null matrix
+// if (arr == null) → NullPointerException
+
+// EDGE CASE: empty matrix
+// if (arr.length == 0) → arr[0].length will crash
+
+// EDGE CASE: jagged array (unequal columns)
+// arr[i].length != arr[0].length → unsafe loops
+
+// EDGE CASE: using arr.length for columns
+// j < arr.length → wrong for non-square matrix
+
+// EDGE CASE: non-square matrix
+// transpose/rotate will fail if rows != cols
+
+// EDGE CASE: single row matrix
+// arr = {{1,2,3}} → some logic may break
+
+// EDGE CASE: single column matrix
+// arr = {{1},{2},{3}} → wave/spiral issues
+
+// EDGE CASE: different size matrices (addition)
+// a.length != b.length OR a[0].length != b[0].length
+
+// EDGE CASE: integer overflow
+// sum of large values → wrong result (use long)
+
+// EDGE CASE: hardcoded size (3x3)
+// fails for dynamic input
+
+// EDGE CASE: leading zero numbers
+// 023 → treated as octal (19)
+
+// EDGE CASE: spiral double print
+// missing boundary checks → duplicates
+
+// EDGE CASE: transpose in-place
+// works only for square matrix
+
+// EDGE CASE: index out of bounds
+// accessing arr[j][i] when invalid
+
+// EDGE CASE: negative numbers
+// check logic still works correctly
+
+// EDGE CASE: all zero matrix
+// verify sum and operations return 0
+
+// EDGE CASE: large matrix
+// performance issues (nested loops)
+
+// EDGE CASE: scanner input mismatch
+// less/more inputs → runtime issues
+
+// EDGE CASE: not closing scanner
+// resource leak (sc.close())
+
+
 import java.util.*;
 
 public class TWODarray {

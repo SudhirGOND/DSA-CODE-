@@ -50,51 +50,55 @@ public class treequestions {
 }
 
 
-remove the nodes in the liinnked list
+// remove the nodes in the liinnked list
+// You are given the head of a linked list.
 
+// Remove every node which has a node with a greater value anywhere to the right side of it.
+
+// Return the head of the modified linked list.
 
 import java.util.Stack;
 
-public class treequestions{
+public class TreeQuestions {
 
     class ListNode {
         int val;
-        ListNode next  ;
+        ListNode next;
+
+        ListNode(int val) {
+            this.val = val;
+        }
     }
 
-    public static void main(String[]  args){
+    public ListNode removeNodes(ListNode head) {
 
-        Stack<ListNode> st  =  new Stack<>();
-        ListNode temp   =  head ;
+        Stack<ListNode> st = new Stack<>();
+        ListNode temp = head;
 
-        /// it takes the O(n)  time complexity
-        while(temp!= null){
-            whiile(st.size() > 0 && st.peek() < temp.val)
+        // First pass
+        while (temp != null) {
 
-            st.pop();
+            while (!st.isEmpty() && st.peek().val < temp.val) {
+                st.pop();
+            }
 
             st.push(temp);
-            temp =  temp.next;
+            temp = temp.next;
         }
 
+        // Rebuild list
+        temp = null;
 
-        /// it also takes the O(n) TC
-        while(st.size() >0){
+        while (!st.isEmpty()) {
 
-            ListNode top  =  st.pop();
-            top.next  =  temp;
-            temp =  top;
-
+            ListNode top = st.pop();
+            top.next = temp;
+            temp = top;
         }
 
         return temp;
-
-
-
-
-
-//     }
-// }
+    }
+}
 
 
 
